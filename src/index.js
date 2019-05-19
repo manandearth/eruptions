@@ -109,23 +109,37 @@ class Stage extends React.Component {
     render() {
         const eruptions = Smithsonian.features;
         const date = this.props.date;
+        const width = "1200px";
+        const height = "700px";
+        const xFit = 0.35;
+        const xBias = 470;
+        const yFit = 0.31;
+        const yBias = -460;
+        
         return(
-            <svg viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
-
+            <svg
+              x="10%"
+              width={width}
+              height={height}>
+              <g>
+                {eruptions.map((eruption) => 
+                    <g fill="yellow" stroke="yellow" stroke-width="1">
+                      <circle cx={eruption['properties']['LongitudeDecimal'] / xFit + xBias} cy={(eruption['properties']['LatitudeDecimal'] / yFit + yBias) * -1} r="3px" />
+                    </g>)}
+              </g>
             {eruptions.map((eruption) =>
         (   eruption['properties']['StartDate'] < parseInt(date) &&
             eruption['properties']['EndDate'] > parseInt(date)) 
          ? 
            
-            
-            <g fill="white" stroke="green" stroke-width="3">
-            
-              <circle cx={eruption['properties']['EndDateDay']} cy="25" r="5" />
+                <g fill="red" stroke="red" stroke-width="0.1">
+                  <circle cx={eruption['properties']['LongitudeDecimal'] / xFit + xBias} cy={(eruption['properties']['LatitudeDecimal'] / yFit + yBias) * -1} r="5px" />
             </g>
             :
             null
               
             )}
+              
             </svg>
 
         );

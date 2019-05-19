@@ -42,3 +42,7 @@ code {
     background: #4CAF50; /* Green background */
     cursor: pointer; /* Cursor on hover */
 }
+
+svg {
+    background-image: url("worldKashmirLow.svg")
+}
