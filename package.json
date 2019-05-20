@@ -1,7 +1,8 @@
 {
   "name": "eruptions",
   "version": "0.1.0",
-  "private": true,
+	"private": true,
+	  "homepage": "https://manandearth.github.io/eruptions",
   "dependencies": {
     "d3-geo": "^1.11.3",
     "react": "^16.8.6",
