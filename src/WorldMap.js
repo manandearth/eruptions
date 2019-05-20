@@ -24,7 +24,7 @@ class WorldMap extends Component {
       .translate([ 800 / 2, 450 / 2 ])
   }
   componentDidMount() {
-    fetch('/world-110m.json')
+    fetch('./world-110m.json')
       .then(response => {
         if (response.status !== 200) {
           console.log(`There was a problem: ${response.status}`)
