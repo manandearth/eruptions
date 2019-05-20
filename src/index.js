@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import App from './App';
 import Smithsonian from './smithsonian.json';
 import * as serviceWorker from './serviceWorker';
 import WorldMap from './WorldMap';
@@ -15,12 +14,10 @@ class App extends React.Component  {
     render() {
         return (
             <div>
-              <h1>Boom!</h1>
+              <h1>Eruptions from 1960 to 2019, an excercise.</h1>
+              <h2>scroll using the slider or the keyboard arrows</h2>
               <div>
                 <State />
-                <table>
-                  <EruptionList />
-                </table>      
               </div>
             </div>
         );
@@ -57,31 +54,40 @@ class State extends React.Component {
                 date={this.state.date}
                 index ={this.state.index}
                 onDateChange={this.handleDateChange}/>
+            <table>
+              <EruptionList
+                date={this.state.date}
+                onDateChange={this.handleDateChange}/>
+            </table>
             </div>
         );
     }
 }
 
 class EruptionList extends React.Component {
+    constructor(props) {
+        super(props)
+        
+    }
     render () {
         const eruptions = Smithsonian.features;
+        const date = this.props.date
         return (
             eruptions.map((eruption) =>
-                (<tr>
+                (   eruption['properties']['StartDate'] <= date &&
+                    eruption['properties']['EndDate'] >= date)
+                    ? 
+                    <tr>
                    <td>{eruption['properties']['VolcanoName']}</td>
                    <td>{eruption['properties']['StartDate']}</td>
                    <td>{eruption['properties']['EndDate']}</td>
-                 </tr>)
-            )
-        );
+                    </tr>
+                    :
+                null)
+        )
+        
     }
 
-}
-
-class Map extends React.Component {
-    render () {
-        return null;
-    }
 }
 
 class TimeSlider extends React.Component {
@@ -111,8 +117,7 @@ class TimeSlider extends React.Component {
                      value={this.props.index}
                      onChange={this.handleDateChange}
               />
-              <h2 className="current">{(now[6] + now[7] + "/" + now[4] + now[5] + "/" + now[0] + now[1] + now[2] + now[3])}</h2>
-              <h1>{dates.length} </h1>
+              <h2 className="current">{("On " +  now[6] + now[7] + "/" + now[4] + now[5] + "/" + now[0] + now[1] + now[2] + now[3])}</h2>
             </div>
         );
     }
@@ -120,48 +125,6 @@ class TimeSlider extends React.Component {
 
 
 
-class Stage extends React.Component {
-
-    
-    render() {
-        const eruptions = Smithsonian.features;
-        const date = this.props.date;
-        const width = "1200px";
-        const height = "700px";
-        const xFit = 0.35;
-        const xBias = 470;
-        const yFit = 0.27;
-        const yBias = -460;
-        
-        return(
-            <svg
-              x="10%"
-              width={width}
-              height={height}>
-              <g>
-                {eruptions.map((eruption) => 
-                    <g fill="yellow" stroke="yellow" strokeWidth="1">
-                      <circle cx={eruption['properties']['LongitudeDecimal'] / xFit + xBias} cy={(eruption['properties']['LatitudeDecimal'] / yFit + yBias) * -1} r="3px" />
-                    </g>)}
-              </g>
-            {eruptions.map((eruption) =>
-        (   eruption['properties']['StartDate'] < parseInt(date) &&
-            eruption['properties']['EndDate'] > parseInt(date)) 
-         ? 
-           
-                <g fill="red" stroke="red" strokeWidth="0.1">
-                  <circle cx={eruption['properties']['LongitudeDecimal'] / xFit + xBias} cy={(eruption['properties']['LatitudeDecimal'] / yFit + yBias) * -1} r={(eruption['properties']['ExplosivityIndexMax'] * 3)} />
-            </g>
-            :
-            null
-              
-            )}
-              
-            </svg>
-
-        );
-    }
-}
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
