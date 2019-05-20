@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c4f140cd0f5c5de4609439b09be4116c",
+    "revision": "fcc258786dfeef3144ebc95ed9c02ef9",
     "url": "/eruptions/index.html"
   },
   {
-    "revision": "a0eee2b2c029a7ece28a",
+    "revision": "98f541e65ef70bb7a704",
     "url": "/eruptions/static/css/main.90d2eb96.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/eruptions/static/js/2.1dc0e067.chunk.js"
   },
   {
-    "revision": "a0eee2b2c029a7ece28a",
-    "url": "/eruptions/static/js/main.de1eb204.chunk.js"
+    "revision": "98f541e65ef70bb7a704",
+    "url": "/eruptions/static/js/main.20ae042c.chunk.js"
   },
   {
     "revision": "fe9ffed8716bcef62930",
