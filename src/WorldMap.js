@@ -2,6 +2,12 @@
 
 import React, { Component } from "react"
 import { geoMercator, geoPath } from "d3-geo"
+import {
+  ComposableMap,
+  ZoomableGroup,
+  Geographies,
+  Geography,
+} from "react-simple-maps"
 import { feature } from "topojson-client"
 import Smithsonian from './smithsonian.json'
 
@@ -36,8 +42,8 @@ class WorldMap extends Component {
         const date = this.props.date
         return (
             <svg width={ 800 } height={ 450 } viewBox="0 0 800 450">
-              <rect x="85" y="0" rx="20" ry="20" width="630" height="450"
-                    style={{fill: 'dodgerBlue', stroke: 'black', strokeWidth: 5, opacity: 0.5}} />
+              <rect x="85" y="0" width="630" height="450"
+                    style={{fill: 'dodgerBlue', stroke: 'black', strokeWidth: 1}} />
               <g className="countries">
                 {
                     this.state.worldData.map((d,i) => (
@@ -81,5 +87,8 @@ class WorldMap extends Component {
         )
     }
 }
+
+
+
 
 export default WorldMap

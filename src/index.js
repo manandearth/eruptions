@@ -4,7 +4,9 @@ import './index.css';
 // import App from './App';
 import Smithsonian from './smithsonian.json';
 import * as serviceWorker from './serviceWorker';
-import WorldMap from './WorldMap'
+import WorldMap from './WorldMap';
+import { dateRange, numberRange } from './dates';
+
 class App extends React.Component  {
     render() {
         return (
@@ -26,13 +28,18 @@ class State extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            date: ""
+            date: "19600101",
+            index: 0
         };
-        this.handleDateChange = this.handleDateChange.bind(this); 
+        this.handleDateChange = this.handleDateChange.bind(this);
+        
     }
     
-    handleDateChange(newDate) {
-        this.setState({date: newDate});
+        handleDateChange(newDate) {
+            const dates = [].concat.apply([], dateRange);
+            this.setState({
+                date: dates[newDate],
+                index: newDate});
     }
     
     render() {
@@ -45,6 +52,7 @@ class State extends React.Component {
               {/*   date={this.state.date} /> */}
               <TimeSlider
                 date={this.state.date}
+                index ={this.state.index}
                 onDateChange={this.handleDateChange}/>
             </div>
         );
@@ -77,13 +85,19 @@ class TimeSlider extends React.Component {
     constructor(props) {
         super(props);
         this.handleDateChange = this.handleDateChange.bind(this);
+        // const dates = [].concat.apply([], dateRange);
+        
     }
 
     handleDateChange(event){
         this.props.onDateChange(event.target.value);
     }
-    
+
     render () {
+        const dates = [].concat.apply([], dateRange);
+        const length = dates.length;
+        const now = this.props.date;
+
         return(
             <div>
               <label className="label">Time</label>
@@ -91,17 +105,17 @@ class TimeSlider extends React.Component {
                      type="range"
                      name="timeSlider"
                      id="timeSlider"
-                     min="19340202"
-                     max="20190517"
+                     min="0"
+                     max={length - 1}
                      value={this.props.date}
                      onChange={this.handleDateChange}
               />
-                      
+              <h2 className="current">{(now[6] + now[7] + "/" + now[4] + now[5] + "/" + now[0] + now[1] + now[2] + now[3])}</h2>
+              <h1>{dates.length} </h1>
             </div>
         );
     }
 }
-
 
 
 
