@@ -35,6 +35,8 @@ class WorldMap extends Component {
         const eruptions = Smithsonian.features;
         return (
             <svg width={ 800 } height={ 450 } viewBox="0 0 800 450">
+              <rect x="85" y="0" rx="20" ry="20" width="630" height="450"
+                    style={{fill: 'dodgerBlue', stroke: 'black', strokeWidth: 5, opacity: 0.5}} />
               <g className="countries">
                 {
                     this.state.worldData.map((d,i) => (
@@ -42,7 +44,7 @@ class WorldMap extends Component {
                           key={ `path-${ i }` }
                           d={ geoPath().projection(this.projection())(d) }
                           className="country"
-                          fill={ `rgba(38,50,56,${1 / this.state.worldData.length * i})` }
+                          fill="YellowGreen"
                           stroke="#FFFFFF"
                           strokeWidth={ 0.5 }
                         />
@@ -55,7 +57,8 @@ class WorldMap extends Component {
                    cx={this.projection() (eruption['geometry']['coordinates'])[0]}  
                    cy={this.projection() (eruption['geometry']['coordinates'])[1]}
                    r={eruption['properties']['ExplosivityIndexMax']}
-                  fill="#E91E63"
+                   fill="Yellow"
+                   opacity={0.2}
                   className="marker"
                  />))}
               </g>
