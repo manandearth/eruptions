@@ -41,8 +41,8 @@ class State extends React.Component {
               <WorldMap
                 date={this.state.date}
                 onDateChange={this.handleDateChange}/>
-              <Stage
-                date={this.state.date} />
+              {/* <Stage */}
+              {/*   date={this.state.date} /> */}
               <TimeSlider
                 date={this.state.date}
                 onDateChange={this.handleDateChange}/>

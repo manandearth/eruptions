@@ -33,6 +33,7 @@ class WorldMap extends Component {
   }
     render() {
         const eruptions = Smithsonian.features;
+        const date = this.props.date
         return (
             <svg width={ 800 } height={ 450 } viewBox="0 0 800 450">
               <rect x="85" y="0" rx="20" ry="20" width="630" height="450"
@@ -62,6 +63,20 @@ class WorldMap extends Component {
                   className="marker"
                  />))}
               </g>
+                          {eruptions.map((eruption) =>
+        (   eruption['properties']['StartDate'] < parseInt(date) &&
+            eruption['properties']['EndDate'] > parseInt(date)) 
+         ? 
+           
+                <g fill="red" stroke="red" strokeWidth="0.1">
+                  <circle cx={this.projection() (eruption['geometry']['coordinates'])[0]}
+                          cy={this.projection() (eruption['geometry']['coordinates'])[1]}
+                          r={(eruption['properties']['ExplosivityIndexMax'] * 3)} />
+            </g>
+            :
+            null
+              
+            )}
             </svg>
         )
     }
