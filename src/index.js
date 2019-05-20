@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import {createClassFromLiteSpec} from 'react-vega-lite';
 import './index.css';
 // import App from './App';
 import Smithsonian from './smithsonian.json';
 import * as serviceWorker from './serviceWorker';
-
+import WorldMap from './WorldMap'
 class App extends React.Component  {
     render() {
         return (
@@ -39,6 +38,9 @@ class State extends React.Component {
     render() {
         return(
             <div>
+              <WorldMap
+                date={this.state.date}
+                onDateChange={this.handleDateChange}/>
               <Stage
                 date={this.state.date} />
               <TimeSlider
@@ -113,7 +115,7 @@ class Stage extends React.Component {
         const height = "700px";
         const xFit = 0.35;
         const xBias = 470;
-        const yFit = 0.31;
+        const yFit = 0.27;
         const yBias = -460;
         
         return(
@@ -123,7 +125,7 @@ class Stage extends React.Component {
               height={height}>
               <g>
                 {eruptions.map((eruption) => 
-                    <g fill="yellow" stroke="yellow" stroke-width="1">
+                    <g fill="yellow" stroke="yellow" strokeWidth="1">
                       <circle cx={eruption['properties']['LongitudeDecimal'] / xFit + xBias} cy={(eruption['properties']['LatitudeDecimal'] / yFit + yBias) * -1} r="3px" />
                     </g>)}
               </g>
@@ -132,8 +134,8 @@ class Stage extends React.Component {
             eruption['properties']['EndDate'] > parseInt(date)) 
          ? 
            
-                <g fill="red" stroke="red" stroke-width="0.1">
-                  <circle cx={eruption['properties']['LongitudeDecimal'] / xFit + xBias} cy={(eruption['properties']['LatitudeDecimal'] / yFit + yBias) * -1} r="5px" />
+                <g fill="red" stroke="red" strokeWidth="0.1">
+                  <circle cx={eruption['properties']['LongitudeDecimal'] / xFit + xBias} cy={(eruption['properties']['LatitudeDecimal'] / yFit + yBias) * -1} r={(eruption['properties']['ExplosivityIndexMax'] * 3)} />
             </g>
             :
             null
@@ -145,12 +147,6 @@ class Stage extends React.Component {
         );
     }
 }
-
-
-
-
-
-
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
