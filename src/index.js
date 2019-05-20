@@ -7,6 +7,10 @@ import * as serviceWorker from './serviceWorker';
 import WorldMap from './WorldMap';
 import { dateRange, numberRange } from './dates';
 
+
+const dates = [].concat.apply([], dateRange);
+const length = dates.length;
+
 class App extends React.Component  {
     render() {
         return (
@@ -36,7 +40,6 @@ class State extends React.Component {
     }
     
         handleDateChange(newDate) {
-            const dates = [].concat.apply([], dateRange);
             this.setState({
                 date: dates[newDate],
                 index: newDate});
@@ -94,9 +97,7 @@ class TimeSlider extends React.Component {
     }
 
     render () {
-        const dates = [].concat.apply([], dateRange);
-        const length = dates.length;
-        const now = this.props.date;
+        const now = "" + this.props.date;
 
         return(
             <div>
@@ -107,7 +108,7 @@ class TimeSlider extends React.Component {
                      id="timeSlider"
                      min="0"
                      max={length - 1}
-                     value={this.props.date}
+                     value={this.props.index}
                      onChange={this.handleDateChange}
               />
               <h2 className="current">{(now[6] + now[7] + "/" + now[4] + now[5] + "/" + now[0] + now[1] + now[2] + now[3])}</h2>
