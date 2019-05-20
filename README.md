@@ -1,4 +1,17 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Eruptions 
+
+## Vulcanic eruptions records from 1960 to 2019
+
+An interactive map demonstrating the dataset available at the Smithsonian Institution: http://volcano.si.edu/  
+
+A working example can be found in https://manandearth.github.io/eruptions/
+
+Visualise vulcanic activity worldwide over time.
+
+Scroll the time line to update the map
+
+
+# DEV
 
 ## Available Scripts
 
