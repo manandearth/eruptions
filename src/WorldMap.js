@@ -68,8 +68,9 @@ class WorldMap extends Component {
                    opacity={0.5}
                    stroke= "orange"
                    strokeWidth={1}
-                  className="marker"
-                 />))}
+                   className="marker">
+                   <title>{eruption['properties']['VolcanoName']}</title>
+                 </circle>))}
               </g>
                           {eruptions.map((eruption) =>
         (   eruption['properties']['StartDate'] < parseInt(date) &&
@@ -77,9 +78,15 @@ class WorldMap extends Component {
          ? 
            
                               <g fill="orange" opacity={0.5} stroke="red" strokeWidth="1">
-                  <circle cx={this.projection() (eruption['geometry']['coordinates'])[0]}
-                          cy={this.projection() (eruption['geometry']['coordinates'])[1]}
-                          r={(eruption['properties']['ExplosivityIndexMax'] * 3)} />
+                                <circle
+                                  cx={this.projection() (eruption['geometry']['coordinates'])[0]}
+
+                                  cy={this.projection() (eruption['geometry']['coordinates'])[1]}
+
+                                  r={(eruption['properties']['ExplosivityIndexMax'] * 3)}>
+
+                                <title>{eruption['properties']['VolcanoName']}</title>
+</circle> 
             </g>
             :
             null
