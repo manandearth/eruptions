@@ -43,7 +43,7 @@ class WorldMap extends Component {
         return (
             <svg width={ 800 } height={ 450 } viewBox="0 0 800 450">
               <rect x="85" y="0" width="630" height="450"
-                    style={{fill: 'dodgerBlue', stroke: 'black', strokeWidth: 1}} />
+                    style={{fill: '#9cd', stroke: 'black', strokeWidth: 1}} />
               <g className="countries">
                 {
                     this.state.worldData.map((d,i) => (
@@ -51,8 +51,8 @@ class WorldMap extends Component {
                           key={ `path-${ i }` }
                           d={ geoPath().projection(this.projection())(d) }
                           className="country"
-                          fill="YellowGreen"
-                          stroke="#FFFFFF"
+                          fill="#e1e1e1"
+                          stroke="#999"
                           strokeWidth={ 0.5 }
                         />
                     ))
@@ -63,9 +63,11 @@ class WorldMap extends Component {
                 (<circle
                    cx={this.projection() (eruption['geometry']['coordinates'])[0]}  
                    cy={this.projection() (eruption['geometry']['coordinates'])[1]}
-                   r={eruption['properties']['ExplosivityIndexMax']}
+                   r={eruption['properties']['ExplosivityIndexMax'] + 1}
                    fill="Yellow"
-                   opacity={0.2}
+                   opacity={0.5}
+                   stroke= "orange"
+                   strokeWidth={1}
                   className="marker"
                  />))}
               </g>
@@ -74,7 +76,7 @@ class WorldMap extends Component {
             eruption['properties']['EndDate'] > parseInt(date)) 
          ? 
            
-                <g fill="red" stroke="red" strokeWidth="0.1">
+                              <g fill="orange" opacity={0.5} stroke="red" strokeWidth="1">
                   <circle cx={this.projection() (eruption['geometry']['coordinates'])[0]}
                           cy={this.projection() (eruption['geometry']['coordinates'])[1]}
                           r={(eruption['properties']['ExplosivityIndexMax'] * 3)} />
