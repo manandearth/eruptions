@@ -7,17 +7,32 @@ import WorldMap from './WorldMap';
 import { dateRange, numberRange } from './dates';
 
 
+
+// Globals vars and functions:
 const dates = [].concat.apply([], dateRange);
 const length = dates.length;
+function prettifyDate (date) {
+    return (
+        date[6] + date[7] + "/" + date[4] + date[5] + "/" + date[0] + date[1] + date[2] + date[3]
+    )
+}
+
 
 class App extends React.Component  {
     render() {
         return (
             <div>
-              <h1>Eruptions from 1960 to 2019, an excercise.</h1>
+            <div className="title">
+              <h1>Eruptions from 1960 to 2019, an exercise.</h1>
               <h2>scroll using the slider or the keyboard arrows</h2>
-              <div>
+            </div>
+
+            <div>
                 <State />
+              </div>
+              <div className="notes">
+                <p>1. Explosivity index based on peak. In the case of continuous eruption the value is not representative.
+                </p>
               </div>
             </div>
         );
@@ -54,11 +69,10 @@ class State extends React.Component {
                 date={this.state.date}
                 index ={this.state.index}
                 onDateChange={this.handleDateChange}/>
-            <table>
               <EruptionList
                 date={this.state.date}
                 onDateChange={this.handleDateChange}/>
-            </table>
+            
             </div>
         );
     }
@@ -72,18 +86,28 @@ class EruptionList extends React.Component {
     render () {
         const eruptions = Smithsonian.features;
         const date = this.props.date
-        return (
-            eruptions.map((eruption) =>
+        return (<table className="fixed">
+            <thead>
+              <th>Name</th>
+              <th>Started on</th>
+              <th>Ended on</th>
+              <th>Explosivity¹</th>
+            </thead>
+            <tbody>
+            {eruptions.map((eruption) =>
                 (   eruption['properties']['StartDate'] <= date &&
                     eruption['properties']['EndDate'] >= date)
                     ? 
                     <tr>
                    <td>{eruption['properties']['VolcanoName']}</td>
-                   <td>{eruption['properties']['StartDate']}</td>
-                   <td>{eruption['properties']['EndDate']}</td>
+                      <td>{prettifyDate(eruption['properties']['StartDate'])}</td>
+                      <td>{prettifyDate(eruption['properties']['EndDate'])}</td>
+                      <td>{eruption['properties']['ExplosivityIndexMax']}</td>
                     </tr>
                     :
-                null)
+                null)}
+            </tbody>
+            </table>
         )
         
     }
@@ -117,7 +141,8 @@ class TimeSlider extends React.Component {
                      value={this.props.index}
                      onChange={this.handleDateChange}
               />
-              <h2 className="current">{("On " +  now[6] + now[7] + "/" + now[4] + now[5] + "/" + now[0] + now[1] + now[2] + now[3])}</h2>
+              <h2 className="current">
+                {("Volcanoes erupting On " +  prettifyDate(now))}</h2>
             </div>
         );
     }

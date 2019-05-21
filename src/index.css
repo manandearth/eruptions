@@ -1,15 +1,21 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+      font-family: 'Oxygen Mono', monospace;
+
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.title {
+      text-align: center;
+      color: #444;
+      margin-top: 0px;
+
 }
 
 
@@ -45,4 +51,18 @@ code {
 
 .current {
    text-align: center;
+}
+
+table.fixed {
+    table-layout: fixed;
+    width: 800px;
+}
+
+table.fixed td {
+    overflow: hidden;
+   }
+
+
+.notes {
+    color: "red"
 }
