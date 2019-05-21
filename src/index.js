@@ -27,8 +27,8 @@ class App extends React.Component  {
               <h2>scroll using the slider or the keyboard arrows</h2>
             </div>
 
-            <div>
-                <State />
+              <div>
+                <State  />
               </div>
               <div className="notes">
                 <p>1. Explosivity index based on peak. In the case of continuous eruption the value is not representative.
@@ -60,11 +60,11 @@ class State extends React.Component {
     render() {
         return(
             <div>
+              <div className='map'>
               <WorldMap
                 date={this.state.date}
-                onDateChange={this.handleDateChange}/>
-              {/* <Stage */}
-              {/*   date={this.state.date} /> */}
+            onDateChange={this.handleDateChange}/>
+            </div>
               <TimeSlider
                 date={this.state.date}
                 index ={this.state.index}

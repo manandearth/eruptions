@@ -13,11 +13,18 @@ code {
 
 .title {
       text-align: center;
-      color: #444;
+      color: #666;
       margin-top: 0px;
-
+      background-color: #eee
 }
 
+
+.map {
+    display: table; /* keeps it centered */
+    left: 10%;
+    margin: auto;
+    
+}
 
 .slidecontainer {
   width: 100%; /* Width of the outside container */
@@ -26,7 +33,7 @@ code {
 .slider {
   -webkit-appearance: none;  /* Override default CSS styles */
   appearance: none;
-  width: 100%; /* Full-width */
+  width: 90%; /* Full-width */
   height: 25px; /* Specified height */
   background: #d3d3d3; /* Grey background */
   outline: none; /* Remove outline */
@@ -57,9 +64,15 @@ table.fixed {
     table-layout: fixed;
     width: 800px;
 }
+table.fixed th {
+    align: left;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+
 
 table.fixed td {
-    overflow: hidden;
+    ;
    }
 
 
