@@ -1,0 +1,86 @@
+$font-stack: 'Oxygen Mono', monospace;
+$primary-color: #e3e3e3;
+$text-color: #666;
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+      font-family: $font-stack
+
+}
+
+.title {
+      text-align: center;
+      color: $text-color;
+      margin-top: 0px;
+      background-color: $primary-color;
+}
+
+
+.map {
+    display: table; /* keeps it centered */
+    left: 10%;
+    margin: auto;
+}
+
+.slidecontainer {
+  width: 100%; /* Width of the outside container */
+}
+
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 90%; /* Full-width */
+  height: 25px; /* Specified height */
+  background: $primary-color; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+.current {
+    color: $text-color;
+    text-align: center;
+}
+
+table.fixed {
+    table-layout: fixed;
+    width: 800px;
+    color: $text-color;
+}
+table.fixed th {
+    align: left;
+}
+
+tr:nth-child(even) {background-color: $primary-color}
+
+
+table.fixed td {
+    ;
+   }
+
+.notes {
+    background-color: #4CAF50;;
+    color: $text-color;
+}
+
+.footer {
+      color: #666;
+      margin-top: 0px;
+      background-color: $primary-color;
+}

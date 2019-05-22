@@ -34,6 +34,20 @@ class App extends React.Component  {
                 <p>1. Explosivity index based on peak. In the case of continuous eruption the value is not representative.
                 </p>
               </div>
+              <div className="footer">
+                <p>Dataset credits:
+                  <a href="http://volcano.si.edu/"
+                     target="_blank"> volcano.si</a>
+                  , Created by 
+                  <a href="https://github.com/manandearth"
+                     target="_blank"> Adam Gefen</a>
+                  , Repo at:
+                  <a href="https://github.com/manandearth/eruptions"
+                     target="_blank"> GitHub.
+                  </a>
+                </p>
+                
+              </div>
             </div>
         );
     }
