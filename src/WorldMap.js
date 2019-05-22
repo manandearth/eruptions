@@ -3,6 +3,7 @@
 import React, { Component } from "react"
 import { geoMercator, geoPath } from "d3-geo"
 import {
+    //FIXME -> to be used for zoom and pan
   ComposableMap,
   ZoomableGroup,
   Geographies,
@@ -11,19 +12,23 @@ import {
 import { feature } from "topojson-client"
 import Smithsonian from './smithsonian.json'
 
+//this component keeps its own state as well as state inherited via props from `State` in `index.js`
 class WorldMap extends Component {
   constructor() {
-    super()
+      super()
     this.state = {
       worldData: [],
     }
   }
-  projection() {
+//a function for interpolation of the gps coordinates to svg coordinates
+    projection() {
     return geoMercator()
       .scale(100)
       .translate([ 800 / 2, 450 / 2 ])
   }
-  componentDidMount() {
+
+//loads the map json file
+    componentDidMount() {
     fetch('./world-110m.json')
       .then(response => {
         if (response.status !== 200) {

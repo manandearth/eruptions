@@ -4,7 +4,7 @@ import './index.css';
 import Smithsonian from './smithsonian.json';
 import * as serviceWorker from './serviceWorker';
 import WorldMap from './WorldMap';
-import { dateRange, numberRange } from './dates';
+import { dateRange } from './dates'; 
 
 
 
@@ -53,6 +53,7 @@ class App extends React.Component  {
     }
 }
 
+//I called this component state to emphesis that state is managed here
 class State extends React.Component {
 
     constructor(props) {
@@ -91,6 +92,7 @@ class State extends React.Component {
         );
     }
 }
+
 
 class EruptionList extends React.Component {
     constructor(props) {
@@ -132,7 +134,6 @@ class TimeSlider extends React.Component {
     constructor(props) {
         super(props);
         this.handleDateChange = this.handleDateChange.bind(this);
-        // const dates = [].concat.apply([], dateRange);
         
     }
 
